@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce Embedded Messaging Test</title>
+</head>
+
+<body>
+
+    <h1>Salesforce Embedded Messaging Test</h1>
+
+    <p>
+        This page is being used to test Salesforce Embedded Messaging.
+    </p>
+
+    <script type="text/javascript">
+
+        // Register this BEFORE loading Salesforce Embedded Messaging
+        window.addEventListener("onEmbeddedMessagingButtonCreated", () => {
+
+            console.log("Embedded Messaging button created.");
+
+            embeddedservice_bootstrap.utilAPI.launchChat()
+                .then(() => {
+                    console.log("Chat launched successfully automatically.");
+                })
+                .catch((error) => {
+                    console.error(
+                        "Error launching chat automatically:",
+                        error
+                    );
+                });
+        });
+
+
+        function initEmbeddedMessaging() {
+            try {
+
+                embeddedservice_bootstrap.settings.language = 'en_US';
+
+                embeddedservice_bootstrap.init(
+                    '00Dam00001bamwL',
+                    'Skylar_Chat_AI',
+                    'https://xnaorg.my.site.com/ESWSkylarChatAI1790530761472',
+                    {
+                        scrt2URL:
+                            'https://xnaorg.my.salesforce-scrt.com'
+                    }
+                );
+
+            } catch (err) {
+
+                console.error(
+                    'Error loading Embedded Messaging:',
+                    err
+                );
+
+            }
+        }
+
+    </script>
+
+
+    <script
+        type="text/javascript"
+        src="https://xnaorg.my.site.com/ESWSkylarChatAI1790530761472/assets/js/bootstrap.min.js"
+        onload="initEmbeddedMessaging()">
+    </script>
+
+</body>
+</html>
